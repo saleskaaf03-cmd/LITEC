@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAAF × LITEC | العرض الاستراتيجي للنمو المؤسسي واستقطاب صناع القرار</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: IBM Plex Sans Arabic & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        litec: {
+                            obsidian: '#060A11',
+                            slate: '#0C1320',
+                            surface: '#111A2B',
+                            border: '#1E2C42',
+                            amber: '#F59E0B',
+                            amberLight: '#FBBF24',
+                            cyan: '#0EA5E9',
+                            cyanLight: '#38BDF8',
+                            emerald: '#10B981',
+                            emeraldLight: '#34D399',
+                            muted: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['IBM Plex Sans Arabic', 'Cairo', 'sans-serif'],
+                        display: ['Cairo', 'IBM Plex Sans Arabic', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'executive': '0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #060A11;
+            color: #F1F5F9;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Background Canvas */
+        #interactive-bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        /* Drop Shadow for Text & Headings */
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.95);
+        }
+
+        p, li, span, strong, blockquote {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #060A11; }
+        ::-webkit-scrollbar-thumb { background: #1E2C42; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #F59E0B; }
+
+        .arch-grid {
+            background-size: 48px 48px;
+            background-image: 
+                linear-gradient(to left, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        }
+
+        .exec-card {
+            background: linear-gradient(155deg, rgba(17, 26, 43, 0.94) 0%, rgba(10, 16, 27, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+            transition: border-color 0.25s ease;
+        }
+        .exec-card:hover {
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+
+        .exec-card-highlight {
+            background: linear-gradient(155deg, rgba(28, 22, 14, 0.94) 0%, rgba(11, 17, 28, 0.98) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            backdrop-filter: blur(14px);
+        }
+
+        #scroll-progress {
+            height: 3px;
+            background: linear-gradient(270deg, #F59E0B 0%, #38BDF8 55%, #10B981 100%);
+            width: 0%;
+            transition: width 0.12s ease-out;
+        }
+
+        .nav-dot.active span:first-child {
+            background-color: #F59E0B;
+            transform: scale(1.45);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.85);
+        }
+        .nav-dot.active .dot-tip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media print {
+            body { background: #FFFFFF !important; color: #0F172A !important; }
+            #interactive-bg-canvas, header, #side-nav, #floating-wa, #floating-kaaf { display: none !important; }
+            h1, h2, h3, h4, p, li, span, strong, blockquote { text-shadow: none !important; }
+            .exec-card, .exec-card-highlight {
+                background: #FFFFFF !important;
+                border: 1px solid #CBD5E1 !important;
+                box-shadow: none !important;
+                color: #0F172A !important;
+                break-inside: avoid;
+            }
+            .text-white, .text-slate-200, .text-slate-300, .text-litec-muted { color: #1E293B !important; }
+        }
+    </style>
+</head>
+<body class="arch-grid antialiased selection:bg-litec-amber selection:text-black">
+
+    <!-- الخلفية التفاعلية المتحركة -->
+    <canvas id="interactive-bg-canvas"></canvas>
+
+    <!-- الشريط العلوي للتنقل -->
+    <header class="sticky top-0 z-50 bg-litec-obsidian/92 backdrop-blur-xl border-b border-white/10">
+        <div id="scroll-progress"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+            <!-- الهوية المشتركة -->
+            <div class="flex items-center gap-3.5">
+                <a href="https://kaafmarketing.sa/" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg overflow-hidden border border-litec-amber/50 bg-black p-0.5 shrink-0">
+                    <img src="https://i.ibb.co/qKTyhpv/Whats-App-Image-2026-08-26-at-11-29-58.jpg" alt="KAAF Group" class="w-full h-full object-cover rounded">
+                </a>
+                <div>
+                    <div class="flex items-center gap-2 text-sm font-extrabold font-display">
+                        <span class="text-white">KAAF Group</span>
+                        <span class="text-litec-amber">×</span>
+                        <a href="https://litec.sa/" target="_blank" rel="noopener" class="text-litec-amberLight hover:underline">LITEC</a>
+                    </div>
+                    <p class="text-[10px] text-litec-muted">منظومة النمو المؤسسي واستقطاب صناع القرار B2B • الدمام، السعودية</p>
+                </div>
+            </div>
+
+            <!-- روابط التنقل السريع -->
+            <nav class="hidden lg:flex items-center gap-5 text-xs font-medium text-slate-300">
+                <a href="#slide-2" class="hover:text-litec-amberLight transition">الرؤية والأهداف</a>
+                <a href="#slide-5" class="hover:text-litec-amberLight transition">القطاعات وABM</a>
+                <a href="#slide-7" class="hover:text-litec-amberLight transition">SEO & GEO</a>
+                <a href="#slide-10" class="hover:text-litec-amberLight transition">الإعلانات والتتبع</a>
+                <a href="#slide-12" class="hover:text-litec-amberLight transition">فريق المبيعات</a>
+                <a href="#slide-15" class="hover:text-litec-amberLight transition">خطة 6 أشهر</a>
+                <a href="#slide-16" class="hover:text-litec-amberLight transition">مؤشرات الأداء</a>
+            </nav>
+
+            <!-- عداد الشرائح وأزرار التنقل -->
+            <div class="flex items-center gap-2">
+                <span id="current-slide-badge" class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-litec-amberLight">
+                    01 / 18
+                </span>
+                <button onclick="navigateSlide(-1)" title="الشريحة السابقة" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-litec-amber/50 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-up text-xs"></i>
+                </button>
+                <button onclick="navigateSlide(1)" title="الشريحة التالية" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-litec-amber/50 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- قائمة النقاط الجانبية (يسار الشاشة لـ RTL) -->
+    <aside id="side-nav" class="hidden xl:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 flex-col gap-1.5">
+        <a href="#slide-1" class="nav-dot active group flex items-center justify-start gap-2" data-slide="1"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">01. الغلاف التنفيذي</span></a>
+        <a href="#slide-2" class="nav-dot group flex items-center justify-start gap-2" data-slide="2"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">02. Executive Vision</span></a>
+        <a href="#slide-3" class="nav-dot group flex items-center justify-start gap-2" data-slide="3"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">03. أهداف LITEC</span></a>
+        <a href="#slide-4" class="nav-dot group flex items-center justify-start gap-2" data-slide="4"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">04. صناع القرار</span></a>
+        <a href="#slide-5" class="nav-dot group flex items-center justify-start gap-2" data-slide="5"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">05. السوق والقطاعات</span></a>
+        <a href="#slide-6" class="nav-dot group flex items-center justify-start gap-2" data-slide="6"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">06. ICP & ABM</span></a>
+        <a href="#slide-7" class="nav-dot group flex items-center justify-start gap-2" data-slide="7"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">07. SEO & GEO</span></a>
+        <a href="#slide-8" class="nav-dot group flex items-center justify-start gap-2" data-slide="8"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">08. استراتيجية LinkedIn</span></a>
+        <a href="#slide-9" class="nav-dot group flex items-center justify-start gap-2" data-slide="9"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">09. المحتوى والسوشيال</span></a>
+        <a href="#slide-10" class="nav-dot group flex items-center justify-start gap-2" data-slide="10"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">10. الحملات الإعلانية</span></a>
+        <a href="#slide-11" class="nav-dot group flex items-center justify-start gap-2" data-slide="11"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">11. Pixel & Tracking</span></a>
+        <a href="#slide-12" class="nav-dot group flex items-center justify-start gap-2" data-slide="12"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">12. فريق المبيعات الخارجي</span></a>
+        <a href="#slide-13" class="nav-dot group flex items-center justify-start gap-2" data-slide="13"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">13. رحلة العميل</span></a>
+        <a href="#slide-14" class="nav-dot group flex items-center justify-start gap-2" data-slide="14"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">14. الأصول البيعية والتنافسية</span></a>
+        <a href="#slide-15" class="nav-dot group flex items-center justify-start gap-2" data-slide="15"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">15. خطة التنفيذ 6 أشهر</span></a>
+        <a href="#slide-16" class="nav-dot group flex items-center justify-start gap-2" data-slide="16"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">16. مؤشرات الأداء KPIs</span></a>
+        <a href="#slide-17" class="nav-dot group flex items-center justify-start gap-2" data-slide="17"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">17. قيمة KAAF</span></a>
+        <a href="#slide-18" class="nav-dot group flex items-center justify-start gap-2" data-slide="18"><span class="w-2 h-2 rounded-full bg-white/25 transition-all"></span><span class="dot-tip text-[10px] font-medium text-litec-amberLight opacity-0 -translate-x-2 transition-all bg-litec-slate/95 px-2 py-0.5 rounded border border-white/10">18. الخلاصة التنفيذية</span></a>
+    </aside>
+
+    <!-- زر الموقع الرسمي لـ KAAF Group (أسفل اليمين) -->
+    <div id="floating-kaaf" class="fixed bottom-5 right-5 z-40">
+        <a href="https://kaafmarketing.sa/" target="_blank" rel="noopener" title="الموقع الرسمي لـ KAAF Group" class="block w-12 h-12 rounded-full overflow-hidden border-2 border-litec-amber/70 bg-black p-0.5 shadow-xl hover:scale-110 transition">
+            <img src="https://i.ibb.co/qKTyhpv/Whats-App-Image-2026-08-26-at-11-29-58.jpg" alt="KAAF Group" class="w-full h-full object-cover rounded-full">
+        </a>
+    </div>
+
+    <!-- زر التواصل المباشر عبر واتساب (أسفل اليسار) -->
+    <div id="floating-wa" class="fixed bottom-5 left-5 z-40">
+        <a href="https://wa.me/966579534107?text=السلام%20عليكم%20فريق%20KAAF%20Group،%20نرغب%20في%20مناقشة%20العرض%20الاستراتيجي%20لشركة%20LITEC." target="_blank" rel="noopener" title="تواصل مباشر عبر واتساب (+966 57 953 4107)" class="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center border-2 border-emerald-200/70 shadow-xl hover:scale-110 transition">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- الحاوية الرئيسية للعرض -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+        <section id="slide-1" data-slide-num="1" class="exec-card rounded-3xl p-8 sm:p-14 lg:p-16 relative overflow-hidden shadow-executive">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-litec-amber via-litec-cyan to-litec-emerald"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-litec-amber/10 border border-litec-amber/30 text-litec-amberLight text-xs font-semibold">
+                        <i class="fa-solid fa-bolt text-litec-amber"></i>
+                        <span>عرض استراتيجي وتجاري • B2B Growth & Decision-Maker Acquisition</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                            KAAF Group <span class="text-litec-amber">×</span> LITEC
+                            <span class="block text-xl sm:text-2xl font-bold text-slate-300 mt-2">
+                                بناء منظومة استقطاب الفرص المؤسسية والوصول إلى صناع القرار
+                            </span>
+                        </h1>
+                    </div>
+
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+                        خطة نمو مؤسسي متكاملة مقدمة إلى <strong class="text-white">شركة LITEC – Lighting Technologies Co.</strong> (الدمام الصناعية الثانية)، تجمع بين الظهور البحثي (SEO & GEO)، والاستهداف الدقيق (ABM & Paid Media)، وتجهيز الأصول البيعية، وفريق المبيعات الخارجي لتحويل الاهتمام إلى اجتماعات وفرص توريد فعلية.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-3 pt-2 text-xs">
+                        <div class="p-3.5 rounded-xl bg-black/45 border border-white/10">
+                            <span class="text-[10px] text-litec-amberLight block">الأولوية القصوى</span>
+                            <strong class="text-white font-semibold mt-0.5 block">مديرو المشتريات وملاك الشركات</strong>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-black/45 border border-white/10">
+                            <span class="text-[10px] text-litec-cyanLight block">نقطة الانطلاق</span>
+                            <strong class="text-white font-semibold mt-0.5 block">المنطقة الشرقية ← المملكة</strong>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-black/45 border border-white/10">
+                            <span class="text-[10px] text-litec-emeraldLight block">نموذج التشغيل</span>
+                            <strong class="text-white font-semibold mt-0.5 block">تسويق + فريق مبيعات خارجي</strong>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap items-center gap-3">
+                        <a href="#slide-2" class="px-6 py-3 rounded-xl bg-litec-amber text-black font-bold text-xs sm:text-sm hover:bg-litec-amberLight transition flex items-center gap-2">
+                            <span>استعراض الرؤية التنفيذية</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="#slide-12" class="px-6 py-3 rounded-xl bg-white/5 border border-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/10 transition flex items-center gap-2">
+                            <i class="fa-solid fa-headset text-litec-amber"></i>
+                            <span>منظومة فريق المبيعات الخارجي</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- صورة الإضاءة الصناعية والمعمارية -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&w=900&q=85" alt="حلول الإضاءة الصناعية والتجارية" onerror="this.src='https://placehold.co/800x700/111A2B/F59E0B?text=LITEC+Lighting+Technologies'" class="w-full h-[380px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-litec-obsidian via-litec-obsidian/45 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 space-y-1.5">
+                            <div class="flex items-center justify-between text-[10px] text-litec-amberLight font-semibold">
+                                <span>مقدم إلى: LITEC (الدمام الصناعية الثانية)</span>
+                                <span>إعداد: KAAF Group</span>
+                            </div>
+                            <p class="text-xs text-slate-200 leading-relaxed">
+                                ربط التسويق الموجه بالمبيعات الميدانية والهاتفية لبناء مسار فرص تجارية قابل للقياس والتوسع.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 02 — Executive Vision (الرسالة الاستراتيجية الرئيسية)             -->
+        <!-- ========================================================================= -->
+        <section id="slide-2" data-slide-num="2" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 02 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Executive Vision — جوهر الشراكة الاستراتيجية</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">من الظهور الرقمي إلى الفرص التجارية</span>
+            </div>
+
+            <div class="exec-card-highlight rounded-2xl p-6 sm:p-10 space-y-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-litec-amber/20 border border-litec-amber/40 text-litec-amber flex items-center justify-center shrink-0 mt-0.5 text-xl">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-litec-amberLight">الرسالة الاستراتيجية المحورية</span>
+                        <blockquote class="text-lg sm:text-2xl font-bold text-white leading-relaxed">
+                            "نحن لا نعمل على زيادة الظهور الرقمي لشركة LITEC فقط، بل نبني منظومة متكاملة للوصول إلى الشركات المستهدفة وصناع القرار داخلها، وتحويل الظهور والاهتمام إلى فرص تجارية مؤهلة واجتماعات ومشاريع قابلة للتعاقد."
+                        </blockquote>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            في قطاع حلول الإضاءة الصناعية والتجارية والمعمارية، لا يُقاس نجاح التسويق بعدد الإعجابات أو المشاهدات العامة، بل بمدى قدرته على وضع منتجات LITEC أمام مديري المشتريات، وملاك الشركات، ومديري المشاريع والمهندسين في الوقت الذي يخططون فيه للتوريد أو التنفيذ.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-amberLight block">1. وضوح الهدف قبل التنفيذ</strong>
+                        <p class="text-slate-300">كل قناة محتوى أو إعلان مرتبطة بمرحلة واضحة في رحلة المشتري المؤسسي، وليست نشاطاً منفصلاً.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-cyanLight block">2. تكامل التسويق مع فريق المبيعات</strong>
+                        <p class="text-slate-300">فريق KAAF Sales Team يتابع الاستفسارات ويتواصل مع الحسابات المستهدفة لترتيب اجتماعات فعلية لفريق LITEC.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-emeraldLight block">3. واقعية وشفافية القياس</strong>
+                        <p class="text-slate-300">نعتمد على منهجية تنفيذ ومؤشرات قياس دقيقة دون تقديم وعود غير موثقة أو ضمانات مسبقة للعقود.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 03 — فهم أهداف LITEC التجارية ومحفظة منتجاتها                     -->
+        <!-- ========================================================================= -->
+        <section id="slide-3" data-slide-num="3" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 03 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">فهم نشاط LITEC وأهدافها التجارية</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">المرجع: litec.sa</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <div class="lg:col-span-5 space-y-4 text-xs sm:text-sm">
+                        <div class="p-4 rounded-xl bg-litec-amber/10 border border-litec-amber/30 space-y-1.5">
+                            <span class="text-[11px] font-bold text-litec-amberLight block">مخرجات الاجتماع مع Business Developer في LITEC</span>
+                            <p class="text-xs text-slate-200 leading-relaxed">
+                                التوجه الأساسي للشركة هو بناء قناة استقطاب تجارية منظمة تستهدف المنشآت المناسبة، وتصل إلى المسؤولين عن قرارات التوريد، وتؤهل احتياجاتهم لترتيب اجتماعات تجارية تتيح لفريق LITEC تقديم عروضه الفنية والمالية والدخول في فرص التوريد والتعاقد.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-2 text-xs">
+                            <strong class="text-white block"><i class="fa-solid fa-location-dot text-litec-amber ml-1.5"></i> المقر والهوية التشغيلية المعلنة:</strong>
+                            <p class="text-slate-300 leading-relaxed">
+                                مقرها في <strong>الدمام الصناعية الثانية – المنطقة الشرقية</strong>، وتعمل في تصميم وتصنيع وتوريد حلول الإضاءة، والإلكترونيات الذكية المرتبطة بها، وشاشات العرض المضيئة لمختلف المشاريع الصناعية والتجارية والمعمارية والسكنية.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- محفظة المنتجات المعلنة -->
+                    <div class="lg:col-span-7 space-y-3 text-xs">
+                        <div class="flex items-center justify-between">
+                            <strong class="text-white text-sm">محفظة منتجات LITEC المعتمدة في بناء الرسائل التسويقية:</strong>
+                            <span class="text-[10px] text-litec-emeraldLight font-mono">حسب موقع litec.sa</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">LED Street Lights</strong><span class="text-[11px] text-litec-muted">إنارة الطرق والبنية التحتية</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">LED High Bay</strong><span class="text-[11px] text-litec-muted">المصانع والمستودعات والهناجر</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">LED Floodlights</strong><span class="text-[11px] text-litec-muted">الساحات والواجهات والملاعب</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">Magnetic Track Lighting</strong><span class="text-[11px] text-litec-muted">المساحات التجارية والمعارض</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">Linear & Downlights</strong><span class="text-[11px] text-litec-muted">المكاتب والمباني الإدارية</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">Wall & Garden Lighting</strong><span class="text-[11px] text-litec-muted">الإضاءة المعمارية والخارجية</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10 sm:col-span-2"><strong class="text-litec-emeraldLight block">Display Solutions</strong><span class="text-[11px] text-litec-muted">شاشات العرض المضيئة للمنشآت والقطاع التجاري</span></div>
+                            <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-emeraldLight block">Smart Electronics</strong><span class="text-[11px] text-litec-muted">مكونات التحكم والإلكترونيات الذكية</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 04 — طبيعة المشتري المؤسسي وصناع القرار                          -->
+        <!-- ========================================================================= -->
+        <section id="slide-4" data-slide-num="4" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 04 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">طبيعة المشتري المؤسسي وصناع القرار المستهدفون</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">تحليل الأدوار الشرائية (تفاعلي)</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    قرارات التوريد في المشاريع والمنشآت لا يتخذها شخص واحد، لكن <strong class="text-litec-amberLight">مديري المشتريات (Procurement Managers) وملاك الشركات (Business Owners)</strong> يمثلون الأولوية القصوى في الاستهداف المباشر، بينما يؤثر المهندسون ومديرو المشاريع في الاعتماد الفني. اختر كل فئة لاستعراض أولوياتها:
+                </p>
+
+                <!-- أزرار اختيار صناع القرار -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
+                    <button onclick="selectBuyerRole('procurement')" id="role-btn-procurement" class="p-3 rounded-xl bg-litec-amber/20 border-2 border-litec-amber text-right transition">
+                        <span class="text-[10px] text-litec-amberLight font-bold block">أولوية قصوى • 01</span>
+                        <strong class="text-white block mt-0.5">Procurement Managers</strong>
+                    </button>
+                    <button onclick="selectBuyerRole('owners')" id="role-btn-owners" class="p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition">
+                        <span class="text-[10px] text-litec-amberLight font-bold block">أولوية قصوى • 02</span>
+                        <strong class="text-white block mt-0.5">Business Owners</strong>
+                    </button>
+                    <button onclick="selectBuyerRole('projects')" id="role-btn-projects" class="p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition">
+                        <span class="text-[10px] text-litec-cyanLight block">تنفيذ المشاريع • 03</span>
+                        <strong class="text-white block mt-0.5">Project Managers</strong>
+                    </button>
+                    <button onclick="selectBuyerRole('engineering')" id="role-btn-engineering" class="p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition">
+                        <span class="text-[10px] text-litec-cyanLight block">الاعتماد الفني • 04</span>
+                        <strong class="text-white block mt-0.5">Engineering Managers</strong>
+                    </button>
+                    <button onclick="selectBuyerRole('facility')" id="role-btn-facility" class="p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition">
+                        <span class="text-[10px] text-litec-emeraldLight block">التشغيل والصيانة • 05</span>
+                        <strong class="text-white block mt-0.5">Facility Managers</strong>
+                    </button>
+                    <button onclick="selectBuyerRole('contractors')" id="role-btn-contractors" class="p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition">
+                        <span class="text-[10px] text-litec-emeraldLight block">التوريد والمواصفات • 06</span>
+                        <strong class="text-white block mt-0.5">Contractors & Consultants</strong>
+                    </button>
+                </div>
+
+                <!-- بطاقة تفاصيل الدور المختار -->
+                <div class="p-6 rounded-2xl bg-black/55 border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+                    <div class="space-y-1.5">
+                        <span class="text-litec-amberLight font-bold block">الدور في قرار التوريد والشراء</span>
+                        <p id="role-duty" class="text-slate-200 leading-relaxed">يدير عملية تأهيل الموردين، يطلب عروض الأسعار (RFQs)، يقارن الشروط التجارية ومواعيد التسليم، ويصدر أوامر الشراء.</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <span class="text-litec-cyanLight font-bold block">ما الذي يبحث عنه في المورد؟</span>
+                        <p id="role-needs" class="text-slate-200 leading-relaxed">ملف شركة واضح (Company Profile)، التزام بمواعيد التوريد، وضوح الضمان والمواصفات، وسرعة التجاوب مع طلبات التسعير.</p>
+                    </div>
+                    <div class="space-y-1.5">
+                        <span class="text-litec-emeraldLight font-bold block">الرسالة المقنعة والإجراء المطلوب</span>
+                        <p id="role-action" class="text-slate-200 leading-relaxed">تقديم LITEC كمصنع ومورد محلي في الدمام الصناعية قادر على تلبية متطلبات المشاريع بكفاءة، وطلب إدراج الشركة في قائمة الموردين أو ترتيب اجتماع.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 05 — الفرصة السوقية والقطاعات المستهدفة                          -->
+        <!-- ========================================================================= -->
+        <section id="slide-5" data-slide-num="5" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 05 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">السوق المستهدف والقطاعات ذات الأولوية</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">التوسع الجغرافي والقطاعي</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <!-- التدرج الجغرافي -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-black/45 p-5 rounded-2xl border border-litec-amber/25 text-xs">
+                    <div class="lg:col-span-5 space-y-2">
+                        <span class="px-2.5 py-0.5 rounded bg-litec-amber/20 text-litec-amberLight font-bold text-[10px]">نقطة الانطلاق الاستراتيجية</span>
+                        <h3 class="text-base font-bold text-white">المنطقة الشرقية أولاً، ثم التوسع للمملكة</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            بوجود مقر LITEC في الدمام الصناعية الثانية، نبدأ بالتركيز المكثف على المدن الصناعية والتجارية في المنطقة الشرقية للاستفادة من القرب اللوجستي وسرعة الزيارات الميدانية، ثم نتوسع تدريجياً إلى الرياض وجدة وبقية المناطق وفق النتائج والقدرة التشغيلية.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        <div class="p-3 rounded-xl bg-white/5 border border-litec-amber/40 text-center">
+                            <strong class="text-white block">الدمام</strong>
+                            <span class="text-[10px] text-litec-amberLight">المدن الصناعية 1 و2</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/5 border border-litec-amber/40 text-center">
+                            <strong class="text-white block">الخبر</strong>
+                            <span class="text-[10px] text-litec-amberLight">المقرات والمشاريع التجارية</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/5 border border-litec-amber/40 text-center">
+                            <strong class="text-white block">الجبيل</strong>
+                            <span class="text-[10px] text-litec-amberLight">المنشآت الصناعية واللوجستية</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/5 border border-litec-amber/40 text-center">
+                            <strong class="text-white block">الأحساء</strong>
+                            <span class="text-[10px] text-litec-amberLight">المصانع والمشاريع التنموية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- القطاعات الثمانية المستهدفة -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs">
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-amberLight block"><i class="fa-solid fa-industry ml-1.5"></i> Industrial & Manufacturing</strong>
+                        <p class="text-slate-300">المصانع وخطوط الإنتاج التي تتطلب وحدات LED High Bay عالية التحمل والكفاءة.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-amberLight block"><i class="fa-solid fa-warehouse ml-1.5"></i> Warehousing & Logistics</strong>
+                        <p class="text-slate-300">المستودعات والمراكز اللوجستية الباحثة عن تقليل استهلاك الطاقة وتحسين وضوح الرؤية.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-cyanLight block"><i class="fa-solid fa-helmet-safety ml-1.5"></i> Construction & Contracting</strong>
+                        <p class="text-slate-300">شركات المقاولات العامة والـ MEP التي تنفذ بنود الإضاءة في المشاريع.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-cyanLight block"><i class="fa-solid fa-building ml-1.5"></i> Commercial Real Estate</strong>
+                        <p class="text-slate-300">المجمعات التجارية والمكاتب والمعارض التي تحتاج Magnetic Track وLinear Lighting.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-emeraldLight block"><i class="fa-solid fa-screwdriver-wrench ml-1.5"></i> Facility Management</strong>
+                        <p class="text-slate-300">شركات إدارة المرافق المسؤولة عن عقود الصيانة والاستبدال المستمر.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-emeraldLight block"><i class="fa-solid fa-road ml-1.5"></i> Infrastructure Projects</strong>
+                        <p class="text-slate-300">مشاريع الطرق والساحات الخارجية التي تتطلب Street Lights وFloodlights.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-white block"><i class="fa-solid fa-compass-drafting ml-1.5"></i> Engineering & Consulting</strong>
+                        <p class="text-slate-300">المكاتب الهندسية والاستشارية التي تحدد جداول المواصفات الفنية للمشاريع.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-white block"><i class="fa-solid fa-city ml-1.5"></i> Large Corporate Facilities</strong>
+                        <p class="text-slate-300">المنشآت الكبرى التي تحتاج شاشات العرض المضيئة Display Solutions والإضاءة الذكية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 06 — استراتيجية ICP & Account-Based Marketing (ABM)                -->
+        <!-- ========================================================================= -->
+        <section id="slide-6" data-slide-num="6" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 06 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">استراتيجية ICP & Account-Based Marketing (ABM)</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">استهداف المنشآت ذات القيمة العالية</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    بدلاً من إطلاق حملات عامة تستهدف شرائح عشوائية، نطبق منهجية <strong class="text-white">Account-Based Marketing (ABM)</strong> بحيث نعامل كل شركة مستهدفة كسوق مستقل له رسائله وقنواته المناسبة:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-amber/30 space-y-2">
+                        <span class="text-litec-amberLight font-mono font-bold">الخطوة 01</span>
+                        <h4 class="font-bold text-white">تحديد مواصفات ICP</h4>
+                        <p class="text-slate-300 leading-relaxed">حصر معايير الشركة المثالية (القطاع، الموقع الجغرافي، حجم المنشأة أو المشاريع، ونوع الإضاءة المطلوبة) واعتمادها مع فريق LITEC.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-cyan/30 space-y-2">
+                        <span class="text-litec-cyanLight font-mono font-bold">الخطوة 02</span>
+                        <h4 class="font-bold text-white">بناء قائمة الحسابات المستهدفة</h4>
+                        <p class="text-slate-300 leading-relaxed">إعداد قائمة منظمة بالشركات والمصانع والمقاولين المستهدفين وتحديد أصحاب القرار (Procurement & Owners) داخل كل منشأة.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-emerald/30 space-y-2">
+                        <span class="text-litec-emeraldLight font-mono font-bold">الخطوة 03</span>
+                        <h4 class="font-bold text-white">تخصيص الرسائل حسب القطاع</h4>
+                        <p class="text-slate-300 leading-relaxed">رسائل تركز على كفاءة التشغيل والتحمل للمصانع، مقابل مرونة التصميم والتوريد للمقاولين والمساحات التجارية.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-white/15 space-y-2">
+                        <span class="text-white font-mono font-bold">الخطوة 04</span>
+                        <h4 class="font-bold text-white">التنسيق بين الإعلان والتواصل</h4>
+                        <p class="text-slate-300 leading-relaxed">تزامن ظهور إعلانات LinkedIn أمام مسؤولي الشركة المستهدفة مع تواصل فريق KAAF Sales Team لفتح باب النقاش التجاري.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 07 — المحور الأول: منظومة SEO & GEO                               -->
+        <!-- ========================================================================= -->
+        <section id="slide-7" data-slide-num="7" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 07 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">المحور الأول: منظومة SEO & GEO للظهور الشرائي</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">التكامل بين محركات البحث والذكاء الاصطناعي</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs">
+                <!-- SEO -->
+                <div class="exec-card rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                        <h3 class="text-base font-bold text-white"><i class="fa-solid fa-magnifying-glass text-litec-amber ml-2"></i> أولاً: Search Engine Optimization (SEO)</h3>
+                        <span class="text-[10px] font-mono text-litec-amberLight">التقاط نية الشراء الحالية</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        يركز على تصدر نتائج بحث Google عندما يبحث المهندس أو مسؤول المشتريات عن موردين أو حلول إضاءة محددة في السعودية:
+                    </p>
+                    <ul class="space-y-2 text-slate-200">
+                        <li>• <strong>كلمات النية الشرائية:</strong> استهداف كلمات موردي ومصنعي الإضاءة للمشاريع والمصانع والمستودعات.</li>
+                        <li>• <strong>صفحات هبوط لكل فئة:</strong> بناء صفحات مستقلة ومهيأة لـ Street Lights وHigh Bay وFloodlights وMagnetic Track.</li>
+                        <li>• <strong>Local SEO والخرائط:</strong> تعزيز ظهور مقر الدمام والمنطقة الشرقية وتحسين Google Business Profile ثم التوسع للمملكة.</li>
+                        <li>• <strong>البنية التقنية والربط الداخلي:</strong> تحسين سرعة الموقع، الفهرسة، والمحتوى الفني الموجه للمهندسين والمقاولين.</li>
+                    </ul>
+                </div>
+
+                <!-- GEO -->
+                <div class="exec-card rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                        <h3 class="text-base font-bold text-white"><i class="fa-solid fa-robot text-litec-cyan ml-2"></i> ثانياً: Generative Engine Optimization (GEO)</h3>
+                        <span class="text-[10px] font-mono text-litec-cyanLight">الظهور في إجابات AI</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        يعمل جنباً إلى جنب مع SEO لرفع قابلية اكتشاف LITEC واستيعاب بياناتها بدقة داخل محركات الإجابة الذكية (ChatGPT, Gemini, Google AI Overviews):
+                    </p>
+                    <ul class="space-y-2 text-slate-200">
+                        <li>• <strong>محتوى معرفي وأسئلة فنية (Q&A):</strong> صفحات تجيب بوضوح عن معايير اختيار الإضاءة الصناعية والتجارية.</li>
+                        <li>• <strong>تنظيم بيانات المنتجات والمواصفات:</strong> صياغة واضحة لاستخدامات كل منتج وقطاعاته لتسهيل قراءتها آلياً.</li>
+                        <li>• <strong>البيانات المنظمة (Schema) والمصادر الموثوقة:</strong> بناء إشارات متسقة لهوية LITEC عبر المنصات والأدلة الصناعية.</li>
+                    </ul>
+                    <div class="p-3 rounded-xl bg-black/50 border border-white/10 text-[11px] text-litec-muted">
+                        <strong>ملاحظة مهنية:</strong> لا نقدم وعوداً بترتيب رقمي مضمون أو ظهور إلزامي في إجابات AI؛ بل ننفذ أفضل الممارسات التقنية والمعرفية التي تعظم فرص الاكتشاف وتُقاس دورياً.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 08 — استراتيجية LinkedIn وبناء السلطة المؤسسية                    -->
+        <!-- ========================================================================= -->
+        <section id="slide-8" data-slide-num="8" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 08 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">استراتيجية LinkedIn وبناء السلطة المؤسسية</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">القناة الأساسية لصناع القرار B2B</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start text-xs">
+                    <div class="lg:col-span-5 space-y-3">
+                        <span class="px-3 py-1 rounded-full bg-litec-cyan/15 text-litec-cyanLight font-bold">لماذا LinkedIn هو المحور الأساسي؟</span>
+                        <h3 class="text-lg font-bold text-white">الوصول المباشر لعقلية المشتري المؤسسي</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            على LinkedIn يتواجد مديرو المشتريات، وملاك الشركات، ومديرو المشاريع والمهندسون بصفتهم المهنية. لذلك نبتعد تماماً عن المنشورات العامة أو الترفيهية، ونبني حضوراً يعكس القدرة الفنية والتصنيعية لشركة LITEC.
+                        </p>
+                        <div class="p-4 rounded-xl bg-black/45 border border-litec-cyan/30 space-y-1.5">
+                            <strong class="text-white block">التواصل المهني المدروس (Social Selling):</strong>
+                            <p class="text-slate-300">ربط محتوى صفحة الشركة بالتواصل المهني المنظم مع الحسابات والشركات المستهدفة لتهيئة الأرضية قبل طلب الاجتماع.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                            <strong class="text-litec-amberLight block">1. حلول الإضاءة للمشاريع والقطاعات</strong>
+                            <p class="text-slate-300">نماذج محتوى تشرح تطبيقات الإضاءة في المصانع، المستودعات، والمباني التجارية.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                            <strong class="text-litec-amberLight block">2. القيمة التشغيلية والاقتصادية لـ LED</strong>
+                            <p class="text-slate-300">محتوى يوضح أثر كفاءة استهلاك الطاقة والعمر التشغيلي على تقليل تكاليف الصيانة.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                            <strong class="text-litec-cyanLight block">3. أدلة فنية لمسؤولي المشتريات</strong>
+                            <p class="text-slate-300">محتوى يساعد مدير المشتريات في فهم معايير مقارنة العروض الفنية وخيارات التوريد.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                            <strong class="text-litec-cyanLight block">4. توثيق المشاريع والتطبيقات المعتمدة</strong>
+                            <p class="text-slate-300">إبراز توريدات وتركيبات LITEC الفعلية (بعد اعتمادها من الإدارة) لتعزيز الثقة المؤسسية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 09 — منظومة المحتوى والسوشيال ميديا                               -->
+        <!-- ========================================================================= -->
+        <section id="slide-9" data-slide-num="9" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 09 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">منظومة المحتوى وتوزيع الأدوار على المنصات</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">Content Pillars & Channel Roles</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-cyan/35 space-y-2">
+                        <strong class="text-litec-cyanLight text-sm block"><i class="fa-brands fa-linkedin ml-1.5"></i> LinkedIn</strong>
+                        <span class="text-[10px] font-mono text-litec-amberLight block">القناة الأساسية B2B</span>
+                        <p class="text-slate-300">مقالات فنية، حلول القطاعات، أدلة المشتريات، والتحديثات المؤسسية الموجهة لصناع القرار.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-rose-500/35 space-y-2">
+                        <strong class="text-rose-400 text-sm block"><i class="fa-brands fa-youtube ml-1.5"></i> YouTube</strong>
+                        <span class="text-[10px] font-mono text-litec-muted block">الشرح الفني والتطبيقي</span>
+                        <p class="text-slate-300">فيديوهات شرح المنتجات، اختبارات وعروض فنية، توضيح الفروق بين الحلول، ودراسات حالة المشاريع.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-amber/35 space-y-2">
+                        <strong class="text-litec-amberLight text-sm block"><i class="fa-brands fa-instagram ml-1.5"></i> Instagram</strong>
+                        <span class="text-[10px] font-mono text-litec-muted block">المعرض البصري للمنتجات</span>
+                        <p class="text-slate-300">تصوير احترافي للمنتجات والتركيبات، وفيديوهات قصيرة تبسّط التفاصيل الفنية للمهندسين والملاك.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+                        <strong class="text-white text-sm block"><i class="fa-brands fa-x-twitter ml-1.5"></i> منصة X (مساندة)</strong>
+                        <span class="text-[10px] font-mono text-litec-muted block">التحديثات والأخبار</span>
+                        <p class="text-slate-300">تُستخدم كقناة مساندة للأخبار والمشاركات المؤسسية متى ما توفرت قيمة فعلية من التواجد عليها.</p>
+                    </div>
+                </div>
+
+                <!-- ركائز المحتوى Content Pillars -->
+                <div class="p-5 rounded-xl bg-black/55 border border-white/10 space-y-3">
+                    <h4 class="font-bold text-white">ركائز المحتوى المعتمدة (Content Pillars) ونماذج تطبيقية:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-slate-300">
+                        <div class="p-3 rounded-lg bg-white/5">
+                            <strong class="text-litec-amberLight block mb-1">1. التعليم الفني والمقارنات</strong>
+                            مثال: "كيف تختار زاوية الانتشار وشدة الإضاءة المناسبة لمستودع بارتفاع 12 متراً؟"
+                        </div>
+                        <div class="p-3 rounded-lg bg-white/5">
+                            <strong class="text-litec-cyanLight block mb-1">2. استعراض محفظة المنتجات</strong>
+                            مثال: فيديو تعريفي قصير يوضح مرونة أنظمة Magnetic Track Lighting في المساحات التجارية.
+                        </div>
+                        <div class="p-3 rounded-lg bg-white/5">
+                            <strong class="text-litec-emeraldLight block mb-1">3. الموثوقية والجاهزية للتوريد</strong>
+                            مثال: استعراض إمكانيات التوريد للمشاريع والضمانات المعتمدة لدعم قرار مدير المشتريات.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 10 — المحور الثالث: استراتيجية الحملات الإعلانية والاستهداف       -->
+        <!-- ========================================================================= -->
+        <section id="slide-10" data-slide-num="10" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 10 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">المحور الثالث: منظومة الإعلانات الممولة والاستهداف الدقيق</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">توزيع ذكي للميزانية حسب النية والمنصب</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Google Search -->
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-amber/35 space-y-2">
+                        <strong class="text-white text-sm block"><i class="fa-brands fa-google text-litec-amber ml-1.5"></i> أولاً: Google Search Ads (التقاط الطلب الفوري)</strong>
+                        <p class="text-slate-300 leading-relaxed">
+                            استهداف الباحثين بنية شرائية حقيقية بالعربية والإنجليزية (مثل: <em>Industrial LED Lighting Suppliers، LED High Bay Lights for Warehouses، مصانع إضاءة في السعودية، توريد كشافات شوارع LED</em>) مع استبعاد الكلمات الاستهلاكية غير ذات الصلة.
+                        </p>
+                    </div>
+
+                    <!-- LinkedIn Ads -->
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-cyan/35 space-y-2">
+                        <strong class="text-white text-sm block"><i class="fa-brands fa-linkedin text-litec-cyan ml-1.5"></i> ثانياً: LinkedIn Ads (الاستهداف الوظيفي والقطاعي)</strong>
+                        <p class="text-slate-300 leading-relaxed">
+                            الوصول المباشر إلى المسميات الوظيفية المستهدفة: <strong>Procurement, Purchasing, Supply Chain, Project, Facility, Engineering Managers, Owners & CEOs</strong> مع تحديد القطاعات وأحجام الشركات والنطاق الجغرافي.
+                        </p>
+                    </div>
+
+                    <!-- Meta Ads -->
+                    <div class="p-5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+                        <strong class="text-white text-sm block"><i class="fa-brands fa-meta text-slate-300 ml-1.5"></i> ثالثاً: Meta Ads (إعادة الاستهداف والتعزيز)</strong>
+                        <p class="text-slate-300 leading-relaxed">
+                            تُستخدم بصورة مدروسة لإعادة استهداف زوار الموقع والمتفاعلين مع المحتوى، وبناء جماهير مخصصة من البيانات المصرح باستخدامها، ودعم حملات المنتجات المؤسسية.
+                        </p>
+                    </div>
+
+                    <!-- YouTube & ABM -->
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-emerald/35 space-y-2">
+                        <strong class="text-white text-sm block"><i class="fa-solid fa-bullseye text-litec-emerald ml-1.5"></i> رابعاً وخامساً: YouTube Ads & حملات ABM</strong>
+                        <p class="text-slate-300 leading-relaxed">
+                            توظيف الفيديو لشرح الحلول الفنية للشرائح المهتمة، وتوجيه حملات Account-Based Marketing لقائمة محددة من الشركات ذات القيمة التجارية المرتفعة برسائل مخصصة لكل قطاع.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 11 — المحور الرابع: Tracking, Pixel & Data Intelligence           -->
+        <!-- ========================================================================= -->
+        <section id="slide-11" data-slide-num="11" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 11 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">المحور الرابع: Tracking, Pixel & Data Intelligence</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">تقليل الهدر الإعلاني بالبيانات</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-6 space-y-3">
+                        <h4 class="font-bold text-white text-sm">البنية التقنية للقياس وربط البيانات:</h4>
+                        <div class="grid grid-cols-2 gap-2 text-slate-200">
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• Google Analytics 4 (GA4)</div>
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• Google Tag Manager (GTM)</div>
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• Google Ads Conversion</div>
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• LinkedIn Insight Tag</div>
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• Meta Pixel & CAPI</div>
+                            <div class="p-2.5 rounded-lg bg-black/45 border border-white/10">• ربط التتبع مع CRM</div>
+                        </div>
+
+                        <h4 class="font-bold text-white text-sm pt-2">الأحداث والتفاعلات التي يتم قياسها بدقة:</h4>
+                        <p class="text-slate-300 leading-relaxed bg-black/45 p-3.5 rounded-xl border border-white/10">
+                            مشاهدة صفحات المنتجات • الاهتمام بفئات معينة (مثل High Bay أو Street Lights) • زيارة صفحة طلب عرض السعر • الضغط على أزرار الاتصال والواتساب • إرسال نموذج طلب التسعير • العودة المتكررة للموقع • التحول إلى فرصة تجارية مؤهلة.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="p-4 rounded-xl bg-black/45 border border-litec-cyan/30 space-y-1.5">
+                            <strong class="text-litec-cyanLight block">بناء جماهير إعادة الاستهداف السلوكي:</strong>
+                            <p class="text-slate-300 leading-relaxed">
+                                تجميع الزوار الذين تصفحوا فئة منتجات معينة أو حمّلوا ملفات فنية لإعادة استهدافهم برسائل متخصصة تعزز قرار طلب التسعير، مع مراعاة موافقات المستخدم وأنظمة الخصوصية.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/40 space-y-1.5">
+                            <strong class="text-rose-300 block"><i class="fa-solid fa-circle-info ml-1.5"></i> ملاحظة تقنية إلزامية (الشفافية المهنية):</strong>
+                            <p class="text-slate-200 leading-relaxed">
+                                أدوات <strong>Pixel</strong> لا تستطيع بمفردها معرفة المسمى الوظيفي أو هوية الزائر المجهول بشكل مباشر. لذلك نفصل بوضوح بين <strong>الاستهداف الوظيفي والقطاعي عبر LinkedIn</strong>، وبين <strong>التتبع السلوكي وبناء قوائم إعادة الاستهداف عبر أدوات التحليل والإعلانات</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 12 — المحور الخامس: KAAF Sales Team (فريق المبيعات الخارجي)       -->
+        <!-- ========================================================================= -->
+        <section id="slide-12" data-slide-num="12" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 12 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">المحور الخامس: KAAF Sales Team — فريق المبيعات الخارجي</h2>
+                </div>
+                <span class="text-xs text-litec-amberLight font-bold hidden sm:inline">الامتداد التنفيذي لمنظومة التسويق</span>
+            </div>
+
+            <div class="exec-card-highlight rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                    فريق المبيعات الخارجي في KAAF ليس خدمة اتصالات عشوائية منفصلة، بل هو <strong class="text-litec-amberLight">الذراع التنفيذية</strong> التي تحوّل البيانات والاستفسارات إلى محادثات تجارية حقيقية واجتماعات مع صناع القرار:
+                </p>
+
+                <!-- توزيع الأدوار بين KAAF و LITEC -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-5 rounded-xl bg-black/55 border border-litec-amber/40 space-y-2">
+                        <strong class="text-litec-amberLight text-sm block"><i class="fa-solid fa-headset ml-1.5"></i> مسؤولية فريق KAAF Sales Team</strong>
+                        <ul class="space-y-1.5 text-slate-200">
+                            <li>• إعداد قوائم الشركات والمؤسسات المستهدفة وتحديد مسؤولي المشتريات وأصحاب القرار.</li>
+                            <li>• تنفيذ Outbound Sales Outreach عبر المكالمات، البريد الإلكتروني، وWhatsApp Business.</li>
+                            <li>• فهم طبيعة المشروع، توقيت الشراء، وحجم الفرصة وتأهيلها وفق <strong>Qualification Matrix</strong>.</li>
+                            <li>• ترتيب اجتماعات تجارية لفريق LITEC مع أصحاب القرار وتوثيق كافة المراحل في الـ CRM.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-black/55 border border-litec-cyan/40 space-y-2">
+                        <strong class="text-litec-cyanLight text-sm block"><i class="fa-solid fa-handshake ml-1.5"></i> مسؤولية فريق LITEC الداخلي</strong>
+                        <ul class="space-y-1.5 text-slate-200">
+                            <li>• حضور الاجتماعات التجارية المرتبة مع صناع القرار المؤهلين.</li>
+                            <li>• قيادة المناقشات الفنية ودراسة جداول الكميات (BOQs) والمواصفات الهندسية.</li>
+                            <li>• إعداد التسعير النهائي، الاعتمادات الفنية، وإدارة التفاوض وإغلاق العقود.</li>
+                            <li>• مشاركة ملاحظات الفرص مع فريق KAAF لتحسين جودة الاستهداف المستمر.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- آلية العمل الـ 12 خطوة -->
+                <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-2">
+                    <strong class="text-white block">منظومة العمل اليومية لفريق المبيعات الخارجي:</strong>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-slate-300">
+                        <div>1. إعداد قوائم الشركات المستهدفة</div>
+                        <div>2. تحديد مسؤولي المشتريات والقرار</div>
+                        <div>3. تنفيذ التواصل متعدد القنوات</div>
+                        <div>4. فهم احتياج ونوع المشروع</div>
+                        <div>5. التأهيل وفق Qualification Matrix</div>
+                        <div>6. متابعة العملاء المهتمين</div>
+                        <div>7. ترتيب الاجتماعات لفريق LITEC</div>
+                        <div>8. التسجيل في CRM والتقارير الدورية</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 13 — رحلة العميل من الاستهداف حتى التعاقد                         -->
+        <!-- ========================================================================= -->
+        <section id="slide-13" data-slide-num="13" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 13 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">رحلة العميل المؤسسي: من الاستهداف حتى التعاقد</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">مسار متكامل بين التسويق والمبيعات</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <!-- المخطط البصري للمراحل الثمانية -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 text-center">
+                    <div class="p-3.5 rounded-xl bg-black/50 border border-white/15 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-amberLight block">01</span>
+                        <strong class="text-white block">Target Account</strong>
+                        <span class="text-[10px] text-litec-muted">تحديد المنشأة</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-black/50 border border-white/15 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-amberLight block">02</span>
+                        <strong class="text-white block">Decision Maker</strong>
+                        <span class="text-[10px] text-litec-muted">تحديد المسؤول</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-black/50 border border-litec-cyan/30 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-cyanLight block">03</span>
+                        <strong class="text-white block">First Contact</strong>
+                        <span class="text-[10px] text-litec-muted">إعلان أو تواصل</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-black/50 border border-litec-cyan/30 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-cyanLight block">04</span>
+                        <strong class="text-white block">Qualification</strong>
+                        <span class="text-[10px] text-litec-muted">تأهيل الاحتياج</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-litec-amber/15 border border-litec-amber/40 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-amberLight block">05</span>
+                        <strong class="text-white block">Meeting</strong>
+                        <span class="text-[10px] text-litec-amberLight">اجتماع مع LITEC</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-litec-amber/15 border border-litec-amber/40 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-amberLight block">06</span>
+                        <strong class="text-white block">RFQ</strong>
+                        <span class="text-[10px] text-litec-amberLight">طلب عرض سعر</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-litec-emerald/15 border border-litec-emerald/40 space-y-1">
+                        <span class="text-[10px] font-mono text-litec-emeraldLight block">07</span>
+                        <strong class="text-white block">Negotiation</strong>
+                        <span class="text-[10px] text-litec-emeraldLight">المناقشة الفنية</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-litec-emerald/25 border border-litec-emerald space-y-1">
+                        <span class="text-[10px] font-mono text-white block">08</span>
+                        <strong class="text-white block">Deal Closure</strong>
+                        <span class="text-[10px] text-litec-emeraldLight">التوريد والتعاقد</span>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black/45 border border-white/10 text-slate-300 leading-relaxed">
+                    <strong class="text-white">التكامل التشغيلي:</strong> عندما يتفاعل مسؤول مشتريات مع إعلان LinkedIn أو يزور صفحة منتج على موقع LITEC، يقوم فريق KAAF Sales Team بمتابعة الحساب وإدراجه في جدول التواصل المنظم، وبالمثل فإن الاعتراضات التي تظهر أثناء المكالمات تغذي فريق المحتوى لإنتاج مواد فنية تعالجها.
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 14 — المحور السادس: تجهيز الموقع والأصول البيعية والمشهد التنافسي -->
+        <!-- ========================================================================= -->
+        <section id="slide-14" data-slide-num="14" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 14 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">المحور السادس: تجهيز LITEC للبيع المؤسسي وفرص التموضع</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">Sales Enablement & التموضع التنافسي</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 text-xs">
+                <!-- الأصول البيعية المطلوبة -->
+                <div class="lg:col-span-7 exec-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white">تجهيز الأصول البيعية لتسريع اعتماد LITEC كمورد:</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        المشتري المؤسسي والمهندس الاستشاري لا يتخذان قرار التوريد بناءً على إعلان فقط؛ بل يحتاجان إلى حزمة مستندات فنية وتجارية واضحة وموثقة:
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">Technical Datasheets</strong><span class="text-[11px] text-litec-muted">نشر المواصفات المعتمدة لكل منتج</span></div>
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">Product Catalogues</strong><span class="text-[11px] text-litec-muted">كتالوجات مصنفة حسب القطاعات</span></div>
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-amberLight block">Company Profile</strong><span class="text-[11px] text-litec-muted">ملف تعريفي مهيأ للتسجيل كمورد</span></div>
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">Warranty & Compliance</strong><span class="text-[11px] text-litec-muted">توثيق الضمانات والشهادات المتاحة</span></div>
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">Project Portfolio</strong><span class="text-[11px] text-litec-muted">نماذج التطبيقات والمشاريع المعتمدة</span></div>
+                        <div class="p-3 rounded-xl bg-black/45 border border-white/10"><strong class="text-litec-cyanLight block">RFQ Landing Pages</strong><span class="text-[11px] text-litec-muted">صفحات ونماذج طلب تسعير سريعة</span></div>
+                    </div>
+                </div>
+
+                <!-- التحليل التنافسي وفرص التموضع -->
+                <div class="lg:col-span-5 exec-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white">فرص التموضع أمام المنافسين المحليين</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        في سوق يشهد حضوراً لشركات إضاءة محلية معروفة مثل <strong>National Lighting Company، Alfanar، Brillight، وLight & Design</strong>، تكمن فرصة LITEC التنافسية في:
+                    </p>
+                    <ul class="space-y-2 text-slate-200">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-litec-emerald mt-0.5"></i><span><strong>المرونة وسرعة الاستجابة:</strong> استثمار التواجد في الدمام الصناعية للتجاوب السريع مع طلبات المشاريع والمقاولين.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-litec-emerald mt-0.5"></i><span><strong>وضوح التوثيق الفني الرقمي:</strong> تسهيل وصول المهندس ومدير المشتريات للمواصفات دون تعقيد.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-litec-emerald mt-0.5"></i><span><strong>المبادرة الاستباقية (Outbound):</strong> الوصول المباشر للحسابات المستهدفة بدلاً من انتظار المناقصات العامة فقط.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 15 — خطة التنفيذ لمدة 6 أشهر (4 مراحل)                            -->
+        <!-- ========================================================================= -->
+        <section id="slide-15" data-slide-num="15" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 15 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">خطة التنفيذ المرحلية لمدة 6 أشهر</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">خارطة طريق قابلة للتوسع المستمر</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <!-- المرحلة 1 -->
+                <div class="exec-card rounded-2xl p-5 space-y-3">
+                    <span class="px-2.5 py-1 rounded bg-litec-amber/15 text-litec-amberLight font-mono font-bold text-[10px]">المرحلة 01 • الشهر 1</span>
+                    <h3 class="text-base font-bold text-white">Research & Foundation</h3>
+                    <ul class="space-y-1.5 text-slate-300">
+                        <li>• تحليل السوق والمنافسين والقطاعات.</li>
+                        <li>• بناء ICP وDecision Maker Personas.</li>
+                        <li>• مراجعة الموقع وتحديد متطلبات التتبع.</li>
+                        <li>• إعداد القائمة الأولية للشركات المستهدفة.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-white/10 text-[11px] text-litec-amberLight">
+                        <strong>المخرج:</strong> خط الأساس وقوائم الحسابات المعتمدة.
+                    </div>
+                </div>
+
+                <!-- المرحلة 2 -->
+                <div class="exec-card rounded-2xl p-5 space-y-3">
+                    <span class="px-2.5 py-1 rounded bg-litec-cyan/15 text-litec-cyanLight font-mono font-bold text-[10px]">المرحلة 02 • الشهر 2</span>
+                    <h3 class="text-base font-bold text-white">Infrastructure & Launch</h3>
+                    <ul class="space-y-1.5 text-slate-300">
+                        <li>• تنفيذ التحسينات الأساسية لـ SEO & GEO.</li>
+                        <li>• إطلاق استراتيجية المحتوى على LinkedIn.</li>
+                        <li>• تفعيل GA4 وGTM والـ Pixels وربط CRM.</li>
+                        <li>• تجهيز سيناريوهات التواصل لفريق المبيعات.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-white/10 text-[11px] text-litec-cyanLight">
+                        <strong>المخرج:</strong> جاهزية كاملة للبنية الرقمية والـ CRM.
+                    </div>
+                </div>
+
+                <!-- المرحلة 3 -->
+                <div class="exec-card rounded-2xl p-5 space-y-3">
+                    <span class="px-2.5 py-1 rounded bg-litec-emerald/15 text-litec-emeraldLight font-mono font-bold text-[10px]">المرحلة 03 • الأشهر 3–4</span>
+                    <h3 class="text-base font-bold text-white">Acquisition & Outreach</h3>
+                    <ul class="space-y-1.5 text-slate-300">
+                        <li>• إطلاق حملات Google Search وLinkedIn ABM.</li>
+                        <li>• بدء التواصل المباشر مع الحسابات المستهدفة.</li>
+                        <li>• تأهيل الاستفسارات وترتيب الاجتماعات.</li>
+                        <li>• تحليل جودة الفرص المحولة لفريق LITEC.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-white/10 text-[11px] text-litec-emeraldLight">
+                        <strong>المخرج:</strong> تدفق منتظم للاجتماعات والـ RFQs المؤهلة.
+                    </div>
+                </div>
+
+                <!-- المرحلة 4 -->
+                <div class="exec-card rounded-2xl p-5 space-y-3">
+                    <span class="px-2.5 py-1 rounded bg-white/10 text-white font-mono font-bold text-[10px]">المرحلة 04 • الأشهر 5–6</span>
+                    <h3 class="text-base font-bold text-white">Optimization & Growth</h3>
+                    <ul class="space-y-1.5 text-slate-300">
+                        <li>• تحسين الكلمات والحملات وتكلفة الفرصة المؤهلة.</li>
+                        <li>• تطوير الرسائل بناءً على اعتراضات السوق.</li>
+                        <li>• تحليل أسباب عدم إتمام الصفقات مع المبيعات.</li>
+                        <li>• التوسع نحو القطاعات والمناطق الأعلى أداءً.</li>
+                    </ul>
+                    <div class="pt-2 border-t border-white/10 text-[11px] text-white">
+                        <strong>المخرج:</strong> منظومة قابلة للتوسع لبقية مناطق المملكة.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 16 — مؤشرات الأداء والـ Dashboard التفاعلي                        -->
+        <!-- ========================================================================= -->
+        <section id="slide-16" data-slide-num="16" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 16 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">منظومة مؤشرات الأداء (KPI Framework) ولوحة المتابعة</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">الفصل بين التسويق والمبيعات والإيرادات</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-6 text-xs">
+                <!-- تقسيم المؤشرات الثلاثة -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-cyan/30 space-y-2">
+                        <strong class="text-litec-cyanLight text-sm block">1. مؤشرات التسويق والاستقطاب</strong>
+                        <ul class="space-y-1 text-slate-300">
+                            <li>• Qualified B2B Leads (الاستفسارات المؤهلة)</li>
+                            <li>• Cost Per Qualified Lead (تكلفة الفرصة المؤهلة)</li>
+                            <li>• RFQs Generated (طلبات التسعير الواردة)</li>
+                            <li>• نسبة الوصول للقطاعات المستهدفة عبر LinkedIn وSearch</li>
+                        </ul>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-amber/30 space-y-2">
+                        <strong class="text-litec-amberLight text-sm block">2. مؤشرات فريق المبيعات الخارجي</strong>
+                        <ul class="space-y-1 text-slate-300">
+                            <li>• Target Accounts Reached (المنشآت التي تم الوصول إليها)</li>
+                            <li>• Decision Makers Contacted (صناع القرار المتواصل معهم)</li>
+                            <li>• Sales Qualified Opportunities (الفرص المؤهلة للمبيعات)</li>
+                            <li>• Meetings Booked & Meetings Attended (الاجتماعات المرتبة والمنعقدة)</li>
+                        </ul>
+                    </div>
+                    <div class="p-5 rounded-xl bg-black/45 border border-litec-emerald/30 space-y-2">
+                        <strong class="text-litec-emeraldLight text-sm block">3. مؤشرات العروض والإيرادات (بالتكامل مع LITEC)</strong>
+                        <ul class="space-y-1 text-slate-300">
+                            <li>• Quotations Submitted (عروض الأسعار المقدمة من LITEC)</li>
+                            <li>• Opportunity Pipeline Value (قيمة الفرص قيد التفاوض)</li>
+                            <li>• Proposal-to-Deal Conversion (نسبة تحول العروض لعقود)</li>
+                            <li>• Revenue Attributed to Marketing (الإيرادات المنسوبة للمنظومة)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- نموذج Dashboard مقترح -->
+                <div class="p-5 rounded-2xl bg-black/65 border border-white/15 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded bg-litec-amber/20 text-litec-amberLight font-bold text-[10px]">نموذج هيكلي للـ Dashboard (بدون أرقام مفترضة)</span>
+                            <h4 class="text-sm font-bold text-white mt-1">لوحة متابعة الأداء التنفيذية المشتركة</h4>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="switchKpiTab('marketing')" id="kpi-tab-marketing" class="px-3 py-1.5 rounded-lg bg-litec-amber text-black font-bold">مؤشرات التسويق</button>
+                            <button onclick="switchKpiTab('sales')" id="kpi-tab-sales" class="px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 font-semibold">فريق المبيعات</button>
+                            <button onclick="switchKpiTab('pipeline')" id="kpi-tab-pipeline" class="px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 font-semibold">مسار الفرص</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-[10px] text-litec-muted block">المؤشر الأول</span>
+                            <strong id="kpi-card-1" class="text-sm text-white block mt-0.5">Qualified B2B Leads</strong>
+                            <span class="text-[10px] text-litec-cyanLight">قياس أسبوعي حسب المصدر</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-[10px] text-litec-muted block">المؤشر الثاني</span>
+                            <strong id="kpi-card-2" class="text-sm text-white block mt-0.5">Cost Per Qualified Lead</strong>
+                            <span class="text-[10px] text-litec-amberLight">مقارنة بين Search وLinkedIn</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-[10px] text-litec-muted block">المؤشر الثالث</span>
+                            <strong id="kpi-card-3" class="text-sm text-white block mt-0.5">RFQs Generated</strong>
+                            <span class="text-[10px] text-litec-emeraldLight">مصنفة حسب فئة المنتج</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                            <span class="text-[10px] text-litec-muted block">المؤشر الرابع</span>
+                            <strong id="kpi-card-4" class="text-sm text-white block mt-0.5">Sector Response Rate</strong>
+                            <span class="text-[10px] text-slate-300">القطاعات الأعلى تفاعلاً</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-litec-muted">
+                        <strong>قاعدة اعتماد المستهدفات:</strong> لا نضع أرقاماً عشوائية أو نسب تحويل مضمونة مسبقاً؛ بل يتم تحديد المستهدفات الرقمية بدقة بعد دراسة خط الأساس (Baseline) واعتماد الميزانية الإعلانية وقائمة الحسابات المستهدفة.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 17 — القيمة التي تقدمها KAAF Group                                -->
+        <!-- ========================================================================= -->
+        <section id="slide-17" data-slide-num="17" class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div>
+                    <span class="text-xs font-mono text-litec-amberLight font-semibold">الشريحة 17 / 18</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">القيمة الاستراتيجية التي تقدمها KAAF لشركة LITEC</h2>
+                </div>
+                <span class="text-xs text-litec-muted hidden sm:inline">شريك نمو مؤسسي متكامل</span>
+            </div>
+
+            <div class="exec-card rounded-2xl p-6 sm:p-8 space-y-4 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-amberLight block">1. منظومة واحدة بدلاً من جهود متفرقة</strong>
+                        <p class="text-slate-300">ربط SEO وGEO والمحتوى الفني والإعلانات وفريق المبيعات الخارجي في مسار موحد يخدم أهداف التوريد.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-amberLight block">2. التركيز على صناع القرار الحقيقيين</strong>
+                        <p class="text-slate-300">توجيه الميزانية والجهد نحو مديري المشتريات وملاك الشركات والمهندسين بدلاً من الجمهور العام.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-cyanLight block">3. جسر تنفيذي مع فريق المبيعات</strong>
+                        <p class="text-slate-300">عدم ترك الاستفسارات دون متابعة؛ فريق KAAF يتولى التواصل والتأهيل وترتيب الاجتماعات.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-cyanLight block">4. تطوير جاهزية البيع المؤسسي</strong>
+                        <p class="text-slate-300">بناء الأصول الفنية والملفات التعريفية التي يحتاجها المشتري قبل إدراج LITEC في قوائم الموردين.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-emeraldLight block">5. شفافية البيانات والتتبع</strong>
+                        <p class="text-slate-300">تفعيل بنية قياس دقيقة توضح مصدر كل فرصة وتكلفة استقطابها لتقليل الهدر.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/45 border border-white/10 space-y-1">
+                        <strong class="text-litec-emeraldLight block">6. فهم طبيعة السوق السعودي</strong>
+                        <p class="text-slate-300">انطلاقة مدروسة من المنطقة الشرقية والمدن الصناعية بما يتماشى مع واقع المشاريع والمقاولات في المملكة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- الشريحة 18 — الخلاصة التنفيذية والدعوة إلى بدء العمل                      -->
+        <!-- ========================================================================= -->
+        <section id="slide-18" data-slide-num="18" class="exec-card-highlight rounded-3xl p-8 sm:p-14 text-center space-y-8 relative overflow-hidden shadow-executive">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-litec-amber via-litec-cyan to-litec-emerald"></div>
+
+            <div class="max-w-3xl mx-auto space-y-5">
+                <span class="px-3.5 py-1 rounded-full bg-litec-amber/15 border border-litec-amber/35 text-litec-amberLight font-bold text-xs">
+                    الخلاصة التنفيذية والخطوة القادمة
+                </span>
+
+                <blockquote class="text-lg sm:text-2xl font-bold text-white leading-relaxed">
+                    "KAAF لا تنظر إلى نمو LITEC باعتباره مجرد ظهور إعلاني أو نشاط على منصات التواصل. نحن نعمل على بناء مسار تجاري متكامل يبدأ بتحديد المنشآت المستهدفة، والوصول إلى أصحاب القرار، وبناء الثقة حول حلول LITEC، ثم تحويل الاهتمام إلى فرص مؤهلة واجتماعات تجارية ومتابعة مستمرة حتى مراحل التعاقد."
+                </blockquote>
+
+                <p class="text-xs sm:text-sm text-litec-amberLight font-semibold">
+                    الهدف أن تكون كل خطوة تسويقية مرتبطة بهدف تجاري واضح، وكل فرصة يتم استقطابها لها مسار متابعة وقياس.
+                </p>
+            </div>
+
+            <div class="pt-6 border-t border-white/10 space-y-4">
+                <p class="text-xs text-slate-300">
+                    ندعو إدارة LITEC وفريق تطوير الأعمال لعقد جلسة عمل مشتركة لاعتماد القطاعات ذات الأولوية، ومراجعة محفظة المنتجات المستهدفة، وإطلاق المرحلة الأولى.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="https://wa.me/966579534107?text=السلام%20عليكم%20فريق%20KAAF%20Group،%20نود%20ترتيب%20جلسة%20العمل%20المشتركة%20لبدء%20مشروع%20LITEC." target="_blank" rel="noopener" class="px-7 py-3.5 rounded-xl bg-litec-amber text-black font-extrabold text-xs sm:text-sm hover:bg-litec-amberLight transition flex items-center gap-2 shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span dir="ltr">+966 57 953 4107</span>
+                        <span>— تحديد موعد جلسة البدء</span>
+                    </a>
+                    <a href="https://kaafmarketing.sa/" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-xl bg-white/5 border border-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/10 transition flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-litec-cyanLight"></i>
+                        <span>kaafmarketing.sa</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- التذييل -->
+    <footer class="relative z-10 border-t border-white/10 bg-litec-obsidian/90 py-8 text-xs text-litec-muted mt-12">
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co/qKTyhpv/Whats-App-Image-2026-08-26-at-11-29-58.jpg" alt="KAAF Group" class="w-7 h-7 rounded object-cover border border-litec-amber/40">
+                <span class="font-bold text-white">KAAF Group</span>
+                <span>×</span>
+                <span class="font-semibold text-litec-amberLight">LITEC – Lighting Technologies Co.</span>
+            </div>
+            <div class="text-[11px]">
+                عرض استراتيجي وتجاري مقدم لإدارة LITEC • الدمام الصناعية الثانية، المملكة العربية السعودية
+            </div>
+        </div>
+    </footer>
+
+    <!-- السكربت التفاعلي -->
+    <script>
+        // 1. تبديل أدوار صناع القرار (الشريحة 04)
+        const buyerRoles = {
+            procurement: {
+                duty: 'يدير عملية تأهيل الموردين، يطلب عروض الأسعار (RFQs)، يقارن الشروط التجارية ومواعيد التسليم، ويصدر أوامر الشراء.',
+                needs: 'ملف شركة واضح (Company Profile)، التزام بمواعيد التوريد، وضوح الضمان والمواصفات، وسرعة التجاوب مع طلبات التسعير.',
+                action: 'تقديم LITEC كمصنع ومورد محلي في الدمام الصناعية قادر على تلبية متطلبات المشاريع بكفاءة، وطلب إدراج الشركة في قائمة الموردين أو ترتيب اجتماع.'
+            },
+            owners: {
+                duty: 'صاحب القرار النهائي في الشراكات الاستراتيجية، التوريدات الكبرى، واعتماد الموردين الرئيسيين للمنشأة أو المشاريع.',
+                needs: 'موثوقية الشركة واستقرارها، العائد التشغيلي والاقتصادي طويل الأمد، وجودة الضمان وخدمات ما بعد البيع.',
+                action: 'عرض القيمة المؤسسية لحلول LITEC وقدرتها على دعم توسع أعمالهم، وترتيب اجتماع تنفيذي مباشر.'
+            },
+            projects: {
+                duty: 'يدير الجدول الزمني لتنفيذ المشروع، يتابع وصول المواد للموقع في الموعد المحدد، وينسق بين المقاول والاستشاري.',
+                needs: 'توفر الكميات، سرعة التوريد من الدمام للموقع، ومطابقة المنتجات لجدول الكميات المعتمد دون تأخير.',
+                action: 'إبراز الجاهزية اللوجستية والالتزام بمواعيد التسليم وطلب مراجعة جدول توريدات المشروع القادم.'
+            },
+            engineering: {
+                duty: 'يراجع الكفاءات الفنية، شدة الإضاءة، العمر التشغيلي، ومدى توافق وحدات الإضاءة مع المعايير الهندسية للمنشأة.',
+                needs: 'جداول مواصفات دقيقة (Technical Datasheets)، بيانات كفاءة الطاقة، وتوضيح التطبيقات الصناعية المناسبة.',
+                action: 'تزويده بالملفات الفنية الموثقة وتنظيم جلسة فنية مع مهندسي LITEC لمراجعة متطلبات المنشأة.'
+            },
+            facility: {
+                duty: 'يدير تشغيل وصيانة المصانع والمباني القائمة، ويتخذ قرارات استبدال الإضاءة القديمة بأنظمة LED موفرة للطاقة.',
+                needs: 'اعتمادية عالية في بيئات التشغيل القاسية، تقليل تكاليف الصيانة والاستهلاك الكهربائي، وتوفر قطع الغيار.',
+                action: 'تقديم حلول رفع كفاءة الإضاءة الصناعية والتجارية وطلب زيارة تقييم أو تقديم عرض إحلال.'
+            },
+            contractors: {
+                duty: 'المقاولون ينفذون التوريد والتركيب ضمن ميزانية المشروع، والاستشاريون يحددون المواصفات في مرحلة التصميم.',
+                needs: 'للمقاول: أسعار تنافسية وسرعة تسعير BOQ. للاستشاري: توثيق فني كامل لاعتماد المنتجات في المخططات.',
+                action: 'فتح قناة تواصل سريعة لاستلام جداول الكميات للتسعير أو تقديم الملف الفني للاعتماد الهندسي.'
+            }
+        };
+
+        function selectBuyerRole(key) {
+            Object.keys(buyerRoles).forEach(k => {
+                const btn = document.getElementById('role-btn-' + k);
+                btn.className = (k === key)
+                    ? 'p-3 rounded-xl bg-litec-amber/20 border-2 border-litec-amber text-right transition'
+                    : 'p-3 rounded-xl bg-black/45 border border-white/10 text-right hover:border-white/30 transition';
+            });
+            document.getElementById('role-duty').textContent = buyerRoles[key].duty;
+            document.getElementById('role-needs').textContent = buyerRoles[key].needs;
+            document.getElementById('role-action').textContent = buyerRoles[key].action;
+        }
+
+        // 2. تبديل تبويبات الـ Dashboard (الشريحة 16)
+        function switchKpiTab(tab) {
+            ['marketing', 'sales', 'pipeline'].forEach(t => {
+                const btn = document.getElementById('kpi-tab-' + t);
+                btn.className = (t === tab)
+                    ? 'px-3 py-1.5 rounded-lg bg-litec-amber text-black font-bold'
+                    : 'px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 font-semibold';
+            });
+            if (tab === 'marketing') {
+                document.getElementById('kpi-card-1').textContent = 'Qualified B2B Leads';
+                document.getElementById('kpi-card-2').textContent = 'Cost Per Qualified Lead';
+                document.getElementById('kpi-card-3').textContent = 'RFQs Generated';
+                document.getElementById('kpi-card-4').textContent = 'Sector Response Rate';
+            } else if (tab === 'sales') {
+                document.getElementById('kpi-card-1').textContent = 'Target Accounts Reached';
+                document.getElementById('kpi-card-2').textContent = 'Decision Makers Contacted';
+                document.getElementById('kpi-card-3').textContent = 'Meetings Booked';
+                document.getElementById('kpi-card-4').textContent = 'Meetings Attended';
+            } else {
+                document.getElementById('kpi-card-1').textContent = 'Sales Qualified Opportunities';
+                document.getElementById('kpi-card-2').textContent = 'Quotations Submitted';
+                document.getElementById('kpi-card-3').textContent = 'Opportunity Pipeline Value';
+                document.getElementById('kpi-card-4').textContent = 'Proposal-to-Deal Conversion';
+            }
+        }
+
+        // 3. شريط التقدم والتنقل بين الشرائح
+        let activeSlide = 1;
+        const totalSlides = 18;
+
+        function navigateSlide(delta) {
+            const next = Math.min(totalSlides, Math.max(1, activeSlide + delta));
+            const el = document.getElementById('slide-' + next);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('scroll-progress').style.width = ((scrollTop / docHeight) * 100) + '%';
+
+            const sections = document.querySelectorAll('section[id^="slide-"]');
+            sections.forEach(sec => {
+                if (scrollTop >= sec.offsetTop - 220) {
+                    activeSlide = parseInt(sec.getAttribute('data-slide-num'), 10);
+                }
+            });
+
+            document.getElementById('current-slide-badge').textContent = String(activeSlide).padStart(2, '0') + ' / 18';
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.classList.toggle('active', parseInt(dot.getAttribute('data-slide'), 10) === activeSlide);
+            });
+        });
+
+        // 4. الخلفية التفاعلية المتحركة (Interactive Lighting Constellation Canvas)
+        (function() {
+            const canvas = document.getElementById('interactive-bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height, particles = [];
+            const colors = ['#F59E0B', '#38BDF8', '#10B981', '#FBBF24'];
+            const mouse = { x: null, y: null, radius: 150 };
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            window.addEventListener('resize', resize);
+            window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+            window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+            window.addEventListener('touchmove', e => {
+                if (e.touches.length > 0) {
+                    mouse.x = e.touches[0].clientX;
+                    mouse.y = e.touches[0].clientY;
+                }
+            }, { passive: true });
+            window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.65;
+                    this.vy = (Math.random() - 0.5) * 0.65;
+                    this.radius = Math.random() * 2.2 + 1.2;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.45 + 0.25;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius && dist > 0) {
+                            const force = (mouse.radius - dist) / mouse.radius;
+                            this.x -= (dx / dist) * force * 2.5;
+                            this.y -= (dy / dist) * force * 2.5;
+                        }
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            function init() {
+                resize();
+                particles = [];
+                const count = Math.min(55, Math.floor((width * height) / 24000));
+                for (let i = 0; i < count; i++) particles.push(new Particle());
+            }
+
+            function connect() {
+                const maxDist = 145;
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a + 1; b < particles.length; b++) {
+                        const dx = particles[a].x - particles[b].x;
+                        const dy = particles[a].y - particles[b].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < maxDist) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.strokeStyle = '#F59E0B';
+                            ctx.globalAlpha = (1 - dist / maxDist) * 0.18;
+                            ctx.lineWidth = 0.9;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                connect();
+                ctx.globalAlpha = 1;
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('load', () => { init(); animate(); });
+        })();
+    </script>
+</body>
+</html>
